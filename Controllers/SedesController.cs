@@ -9,31 +9,93 @@ namespace API_WEB_INMOBILIARIA.Controllers
 {
     public class SedesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        [RoutePrefix("api/Sedes")]
+ [EnableCors(origins: "*", headers: "*", methods: "*")]
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
+ // [Authorize]
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+ public class SedesController : ApiController
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
-    }
+ {
+
+     [HttpGet]
+
+     [Route("ConsultarTodos")]
+     public List<sede> ConsultarTodos()
+     {
+
+         clsSede Sede = new clsSede();
+
+         return Sede.ConsultarTodos();
+
+     }
+
+     [HttpGet]
+     [Route("ConsultarXId")]
+
+     public sede ConsultarXId(int idSede)
+     {
+
+         clsSede Sede = new clsSede();
+
+         return Sede.Consultar(idSede);
+
+     }
+
+     [HttpPost]
+
+     [Route("Insertar")]
+     public string Insertar([FromBody] sede sede)
+     {
+
+         clsSede Sede = new clsSede();
+
+         Sede.sede = sede;
+
+         return Sede.Insertar();
+
+     }
+
+     [HttpPut]
+
+     [Route("Actualizar")]
+     public string Actualizar([FromBody] sede sede)
+     {
+
+         clsSede Sede = new clsSede();
+
+         Sede.sede = sede;
+
+         return Sede.Actualizar();
+
+     }
+
+     [HttpDelete]
+
+     [Route("Eliminar")]
+     public string Eliminar([FromBody] sede sede)
+     {
+
+         clsSede Sede = new clsSede();
+
+         Sede.sede = sede;
+
+         return Sede.Eliminar();
+
+     }
+
+     [HttpDelete]
+
+     [Route("EliminarXId")]
+     public string EliminarXId(int idSede)
+     {
+
+         clsSede Sede = new clsSede();
+
+         return Sede.EliminarXId(idSede);
+
+     }
+
+ }
 }
