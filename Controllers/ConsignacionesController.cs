@@ -1,39 +1,69 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using API_WEB_INMOBILIARIA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [RoutePrefix("api/Consignaciones")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class ConsignacionesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodos")]
+        public List<consignacion> ConsultarTodos()
         {
-            return new string[] { "value1", "value2" };
+            clsConsignacion Consignacion = new clsConsignacion();
+            return Consignacion.ConsultarTodos();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarXId")]
+        public consignacion ConsultarXId(int id)
         {
-            return "value";
+            clsConsignacion Consignacion = new clsConsignacion();
+            return Consignacion.Consultar(id);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] consignacion consignacion)
         {
+            clsConsignacion Consignacion = new clsConsignacion();
+            Consignacion.consignacion = consignacion;
+            return Consignacion.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] consignacion consignacion)
         {
+            clsConsignacion Consignacion = new clsConsignacion();
+            Consignacion.consignacion = consignacion;
+            return Consignacion.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] consignacion consignacion)
         {
+            clsConsignacion Consignacion = new clsConsignacion();
+            Consignacion.consignacion = consignacion;
+            return Consignacion.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarXId")]
+        public string EliminarXId(int id)
+        {
+            clsConsignacion Consignacion = new clsConsignacion();
+            return Consignacion.EliminarXId(id);
         }
     }
 }
