@@ -1,4 +1,6 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using API_WEB_INMOBILIARIA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +9,59 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
-    public class OrdenesComprasController : ApiController
+    [RoutePrefix("api/OrdenCompra")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    public class OrdenCompraController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodas")]
+        public List<orden_compra> ConsultarTodas()
         {
-            return new string[] { "value1", "value2" };
+            clsOrdenCompra orden = new clsOrdenCompra();
+            return orden.ConsultarTodas();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarPorId")]
+        public orden_compra ConsultarPorId(int id)
         {
-            return "value";
+            clsOrdenCompra orden = new clsOrdenCompra();
+            return orden.ConsultarPorId(id);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] orden_compra ordenCompra)
         {
+            clsOrdenCompra orden = new clsOrdenCompra();
+            orden.ordenCompra = ordenCompra;
+            return orden.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] orden_compra ordenCompra)
         {
+            clsOrdenCompra orden = new clsOrdenCompra();
+            orden.ordenCompra = ordenCompra;
+            return orden.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] orden_compra ordenCompra)
         {
+            clsOrdenCompra orden = new clsOrdenCompra();
+            orden.ordenCompra = ordenCompra;
+            return orden.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarPorId")]
+        public string EliminarPorId(int id)
+        {
+            clsOrdenCompra orden = new clsOrdenCompra();
+            return orden.EliminarPorId(id);
         }
     }
 }

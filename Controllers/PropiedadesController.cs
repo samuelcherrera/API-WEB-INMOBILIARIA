@@ -1,4 +1,6 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using API_WEB_INMOBILIARIA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +9,61 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [RoutePrefix("api/Propiedades")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class PropiedadesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodas")]
+        public List<propiedad> ConsultarTodas()
         {
-            return new string[] { "value1", "value2" };
+            clsPropiedad Propiedad = new clsPropiedad();
+            return Propiedad.ConsultarTodas();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarPorId")]
+        public propiedad ConsultarPorId(int id)
         {
-            return "value";
+            clsPropiedad Propiedad = new clsPropiedad();
+            return Propiedad.ConsultarPorId(id);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] propiedad propiedad)
         {
+            clsPropiedad Propiedad = new clsPropiedad();
+            Propiedad.propiedad = propiedad;
+            return Propiedad.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] propiedad propiedad)
         {
+            clsPropiedad Propiedad = new clsPropiedad();
+            Propiedad.propiedad = propiedad;
+            return Propiedad.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] propiedad propiedad)
         {
+            clsPropiedad Propiedad = new clsPropiedad();
+            Propiedad.propiedad = propiedad;
+            return Propiedad.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarPorId")]
+        public string EliminarPorId(int id)
+        {
+            clsPropiedad Propiedad = new clsPropiedad();
+            return Propiedad.EliminarPorId(id);
         }
     }
 }
+
