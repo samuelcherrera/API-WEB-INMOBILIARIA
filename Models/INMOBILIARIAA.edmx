@@ -1,0 +1,1611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="INMOBILIARIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="arriendo">
+          <Key>
+            <PropertyRef Name="id_arriendo" />
+          </Key>
+          <Property Name="id_arriendo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="id_inquilino" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="canon_mensual" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="deposito" Type="decimal" Precision="14" Scale="2" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="departamento" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="120" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="fecha_registro" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="consignacion">
+          <Key>
+            <PropertyRef Name="id_consignacion" />
+          </Key>
+          <Property Name="id_consignacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="id_propietario" Type="int" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="porcentaje_comision" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_orden">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_orden" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="cantidad" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="precio_unitario" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="120" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="cargo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_ingreso" Type="date" Nullable="false" />
+          <Property Name="salario" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="sede_id" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_propiedad">
+          <Key>
+            <PropertyRef Name="id_estado_propiedad" />
+          </Key>
+          <Property Name="id_estado_propiedad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imagen_propiedad">
+          <Key>
+            <PropertyRef Name="id_Imagen" />
+          </Key>
+          <Property Name="id_Imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orden_compra">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_proveedor" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="fecha_orden" Type="date" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="propiedad">
+          <Key>
+            <PropertyRef Name="id_propiedad" />
+          </Key>
+          <Property Name="id_propiedad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="id_tipo_propiedad" Type="int" Nullable="false" />
+          <Property Name="area_m2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="habitaciones" Type="int" />
+          <Property Name="banos" Type="int" />
+          <Property Name="parqueaderos" Type="int" />
+          <Property Name="anio_construccion" Type="smallint" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="precio_venta" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="precio_arriendo" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="id_estado_propiedad" Type="int" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="propiedad_modelo">
+          <Key>
+            <PropertyRef Name="id_propiedad" />
+          </Key>
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="costo_decoracion" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="fecha_decoracion" Type="date" />
+        </EntityType>
+        <EntityType Name="propietario">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="120" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_comercial" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nit" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="120" />
+          <Property Name="id_tipo_proveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="fecha_lanzamiento" Type="date" />
+          <Property Name="fecha_entrega_estimada" Type="date" />
+          <Property Name="desarrollador" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="id_sede" />
+          </Key>
+          <Property Name="id_sede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tipo_propiedad">
+          <Key>
+            <PropertyRef Name="id_tipo_propiedad" />
+          </Key>
+          <Property Name="id_tipo_propiedad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_proveedor">
+          <Key>
+            <PropertyRef Name="id_tipo_proveedor" />
+          </Key>
+          <Property Name="id_tipo_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_visita">
+          <Key>
+            <PropertyRef Name="id_tipo_visita" />
+          </Key>
+          <Property Name="id_tipo_visita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="venta">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="fecha_venta" Type="date" Nullable="false" />
+          <Property Name="precio_final" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="comision" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="visita">
+          <Key>
+            <PropertyRef Name="id_visita" />
+          </Key>
+          <Property Name="id_visita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_propiedad" Type="int" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="id_tipo_visita" Type="int" Nullable="false" />
+          <Property Name="fecha_hora" Type="datetime" Nullable="false" />
+          <Property Name="comentarios" Type="text" />
+        </EntityType>
+        <Association Name="FK__arriendo__id_emp__6EF57B66">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__arriendo__id_inq__6E01572D">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_inquilino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__arriendo__id_pro__6D0D32F4">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__consignac__id_pr__5DCAEF64">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="consignacion" Type="Self.consignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="consignacion">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__consignac__id_pr__5EBF139D">
+          <End Role="propietario" Type="Self.propietario" Multiplicity="1" />
+          <End Role="consignacion" Type="Self.consignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propietario">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="consignacion">
+              <PropertyRef Name="id_propietario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_o__id_or__7B5B524B">
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalle_orden" Type="Self.detalle_orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orden_compra">
+              <PropertyRef Name="id_orden" />
+            </Principal>
+            <Dependent Role="detalle_orden">
+              <PropertyRef Name="id_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__empleado__sede_i__5165187F">
+          <End Role="sede" Type="Self.sede" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sede">
+              <PropertyRef Name="id_sede" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="sede_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__imagen_pr__id_pr__7E37BEF6">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="imagen_propiedad" Type="Self.imagen_propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="imagen_propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden_com__id_em__787EE5A0">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="orden_compra">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden_com__id_pr__778AC167">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="orden_compra">
+              <PropertyRef Name="id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_ci__59063A47">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_es__59FA5E80">
+          <End Role="estado_propiedad" Type="Self.estado_propiedad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_propiedad">
+              <PropertyRef Name="id_estado_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_estado_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_pr__6477ECF3">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="propiedad_modelo" Type="Self.propiedad_modelo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad_modelo">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_pr__656C112C">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="1" />
+          <End Role="propiedad_modelo" Type="Self.propiedad_modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="propiedad_modelo">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_ti__5812160E">
+          <End Role="tipo_propiedad" Type="Self.tipo_propiedad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_propiedad">
+              <PropertyRef Name="id_tipo_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_tipo_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proveedor__id_ti__5535A963">
+          <End Role="tipo_proveedor" Type="Self.tipo_proveedor" Multiplicity="1" />
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_proveedor">
+              <PropertyRef Name="id_tipo_proveedor" />
+            </Principal>
+            <Dependent Role="proveedor">
+              <PropertyRef Name="id_tipo_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proyecto__id_ciu__619B8048">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sede__id_ciudad__45F365D3">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="sede" Type="Self.sede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="sede">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_client__693CA210">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_emplea__6A30C649">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_propie__68487DD7">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_clien__72C60C4A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_emple__73BA3083">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_propi__71D1E811">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_tipo___74AE54BC">
+          <End Role="tipo_visita" Type="Self.tipo_visita" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_visita">
+              <PropertyRef Name="id_tipo_visita" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_tipo_visita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INMOBILIARIAModelStoreContainer">
+          <EntitySet Name="arriendo" EntityType="Self.arriendo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="consignacion" EntityType="Self.consignacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_orden" EntityType="Self.detalle_orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado_propiedad" EntityType="Self.estado_propiedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imagen_propiedad" EntityType="Self.imagen_propiedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orden_compra" EntityType="Self.orden_compra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="propiedad" EntityType="Self.propiedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="propiedad_modelo" EntityType="Self.propiedad_modelo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="propietario" EntityType="Self.propietario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proyecto" EntityType="Self.proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sede" EntityType="Self.sede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_propiedad" EntityType="Self.tipo_propiedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_proveedor" EntityType="Self.tipo_proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_visita" EntityType="Self.tipo_visita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="venta" EntityType="Self.venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visita" EntityType="Self.visita" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__arriendo__id_emp__6EF57B66" Association="Self.FK__arriendo__id_emp__6EF57B66">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="arriendo" EntitySet="arriendo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__arriendo__id_inq__6E01572D" Association="Self.FK__arriendo__id_inq__6E01572D">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="arriendo" EntitySet="arriendo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__arriendo__id_pro__6D0D32F4" Association="Self.FK__arriendo__id_pro__6D0D32F4">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="arriendo" EntitySet="arriendo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__consignac__id_pr__5DCAEF64" Association="Self.FK__consignac__id_pr__5DCAEF64">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="consignacion" EntitySet="consignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__consignac__id_pr__5EBF139D" Association="Self.FK__consignac__id_pr__5EBF139D">
+            <End Role="propietario" EntitySet="propietario" />
+            <End Role="consignacion" EntitySet="consignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_o__id_or__7B5B524B" Association="Self.FK__detalle_o__id_or__7B5B524B">
+            <End Role="orden_compra" EntitySet="orden_compra" />
+            <End Role="detalle_orden" EntitySet="detalle_orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__empleado__sede_i__5165187F" Association="Self.FK__empleado__sede_i__5165187F">
+            <End Role="sede" EntitySet="sede" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__imagen_pr__id_pr__7E37BEF6" Association="Self.FK__imagen_pr__id_pr__7E37BEF6">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="imagen_propiedad" EntitySet="imagen_propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden_com__id_em__787EE5A0" Association="Self.FK__orden_com__id_em__787EE5A0">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="orden_compra" EntitySet="orden_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden_com__id_pr__778AC167" Association="Self.FK__orden_com__id_pr__778AC167">
+            <End Role="proveedor" EntitySet="proveedor" />
+            <End Role="orden_compra" EntitySet="orden_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_ci__59063A47" Association="Self.FK__propiedad__id_ci__59063A47">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="propiedad" EntitySet="propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_es__59FA5E80" Association="Self.FK__propiedad__id_es__59FA5E80">
+            <End Role="estado_propiedad" EntitySet="estado_propiedad" />
+            <End Role="propiedad" EntitySet="propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_pr__6477ECF3" Association="Self.FK__propiedad__id_pr__6477ECF3">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="propiedad_modelo" EntitySet="propiedad_modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_pr__656C112C" Association="Self.FK__propiedad__id_pr__656C112C">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="propiedad_modelo" EntitySet="propiedad_modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_ti__5812160E" Association="Self.FK__propiedad__id_ti__5812160E">
+            <End Role="tipo_propiedad" EntitySet="tipo_propiedad" />
+            <End Role="propiedad" EntitySet="propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proveedor__id_ti__5535A963" Association="Self.FK__proveedor__id_ti__5535A963">
+            <End Role="tipo_proveedor" EntitySet="tipo_proveedor" />
+            <End Role="proveedor" EntitySet="proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proyecto__id_ciu__619B8048" Association="Self.FK__proyecto__id_ciu__619B8048">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="proyecto" EntitySet="proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sede__id_ciudad__45F365D3" Association="Self.FK__sede__id_ciudad__45F365D3">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="sede" EntitySet="sede" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_client__693CA210" Association="Self.FK__venta__id_client__693CA210">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="venta" EntitySet="venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_emplea__6A30C649" Association="Self.FK__venta__id_emplea__6A30C649">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="venta" EntitySet="venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_propie__68487DD7" Association="Self.FK__venta__id_propie__68487DD7">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="venta" EntitySet="venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_clien__72C60C4A" Association="Self.FK__visita__id_clien__72C60C4A">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="visita" EntitySet="visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_emple__73BA3083" Association="Self.FK__visita__id_emple__73BA3083">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="visita" EntitySet="visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_propi__71D1E811" Association="Self.FK__visita__id_propi__71D1E811">
+            <End Role="propiedad" EntitySet="propiedad" />
+            <End Role="visita" EntitySet="visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_tipo___74AE54BC" Association="Self.FK__visita__id_tipo___74AE54BC">
+            <End Role="tipo_visita" EntitySet="tipo_visita" />
+            <End Role="visita" EntitySet="visita" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INMOBILIARIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="arriendo">
+          <Key>
+            <PropertyRef Name="id_arriendo" />
+          </Key>
+          <Property Name="id_arriendo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="id_inquilino" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="canon_mensual" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="deposito" Type="Decimal" Precision="14" Scale="2" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__arriendo__id_emp__6EF57B66" FromRole="arriendo" ToRole="empleado" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__arriendo__id_inq__6E01572D" FromRole="arriendo" ToRole="cliente" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__arriendo__id_pro__6D0D32F4" FromRole="arriendo" ToRole="propiedad" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="propiedads" Relationship="Self.FK__propiedad__id_ci__59063A47" FromRole="ciudad" ToRole="propiedad" />
+          <NavigationProperty Name="proyectoes" Relationship="Self.FK__proyecto__id_ciu__619B8048" FromRole="ciudad" ToRole="proyecto" />
+          <NavigationProperty Name="sedes" Relationship="Self.FK__sede__id_ciudad__45F365D3" FromRole="ciudad" ToRole="sede" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="arriendoes" Relationship="Self.FK__arriendo__id_inq__6E01572D" FromRole="cliente" ToRole="arriendo" />
+          <NavigationProperty Name="ventas" Relationship="Self.FK__venta__id_client__693CA210" FromRole="cliente" ToRole="venta" />
+          <NavigationProperty Name="visitas" Relationship="Self.FK__visita__id_clien__72C60C4A" FromRole="cliente" ToRole="visita" />
+        </EntityType>
+        <EntityType Name="consignacion">
+          <Key>
+            <PropertyRef Name="id_consignacion" />
+          </Key>
+          <Property Name="id_consignacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="id_propietario" Type="Int32" Nullable="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="porcentaje_comision" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__consignac__id_pr__5DCAEF64" FromRole="consignacion" ToRole="propiedad" />
+          <NavigationProperty Name="propietario" Relationship="Self.FK__consignac__id_pr__5EBF139D" FromRole="consignacion" ToRole="propietario" />
+        </EntityType>
+        <EntityType Name="detalle_orden">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_orden" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="precio_unitario" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="orden_compra" Relationship="Self.FK__detalle_o__id_or__7B5B524B" FromRole="detalle_orden" ToRole="orden_compra" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="salario" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="sede_id" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="arriendoes" Relationship="Self.FK__arriendo__id_emp__6EF57B66" FromRole="empleado" ToRole="arriendo" />
+          <NavigationProperty Name="sede" Relationship="Self.FK__empleado__sede_i__5165187F" FromRole="empleado" ToRole="sede" />
+          <NavigationProperty Name="orden_compra" Relationship="Self.FK__orden_com__id_em__787EE5A0" FromRole="empleado" ToRole="orden_compra" />
+          <NavigationProperty Name="ventas" Relationship="Self.FK__venta__id_emplea__6A30C649" FromRole="empleado" ToRole="venta" />
+          <NavigationProperty Name="visitas" Relationship="Self.FK__visita__id_emple__73BA3083" FromRole="empleado" ToRole="visita" />
+        </EntityType>
+        <EntityType Name="estado_propiedad">
+          <Key>
+            <PropertyRef Name="id_estado_propiedad" />
+          </Key>
+          <Property Name="id_estado_propiedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="propiedads" Relationship="Self.FK__propiedad__id_es__59FA5E80" FromRole="estado_propiedad" ToRole="propiedad" />
+        </EntityType>
+        <EntityType Name="imagen_propiedad">
+          <Key>
+            <PropertyRef Name="id_Imagen" />
+          </Key>
+          <Property Name="id_Imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__imagen_pr__id_pr__7E37BEF6" FromRole="imagen_propiedad" ToRole="propiedad" />
+        </EntityType>
+        <EntityType Name="orden_compra">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="fecha_orden" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <NavigationProperty Name="detalle_orden" Relationship="Self.FK__detalle_o__id_or__7B5B524B" FromRole="orden_compra" ToRole="detalle_orden" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__orden_com__id_em__787EE5A0" FromRole="orden_compra" ToRole="empleado" />
+          <NavigationProperty Name="proveedor" Relationship="Self.FK__orden_com__id_pr__778AC167" FromRole="orden_compra" ToRole="proveedor" />
+        </EntityType>
+        <EntityType Name="propiedad">
+          <Key>
+            <PropertyRef Name="id_propiedad" />
+          </Key>
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="area_m2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="habitaciones" Type="Int32" />
+          <Property Name="banos" Type="Int32" />
+          <Property Name="parqueaderos" Type="Int32" />
+          <Property Name="anio_construccion" Type="Int16" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="precio_venta" Type="Decimal" Precision="14" Scale="2" />
+          <Property Name="precio_arriendo" Type="Decimal" Precision="14" Scale="2" />
+          <Property Name="id_estado_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="arriendoes" Relationship="Self.FK__arriendo__id_pro__6D0D32F4" FromRole="propiedad" ToRole="arriendo" />
+          <NavigationProperty Name="ciudad" Relationship="Self.FK__propiedad__id_ci__59063A47" FromRole="propiedad" ToRole="ciudad" />
+          <NavigationProperty Name="consignacions" Relationship="Self.FK__consignac__id_pr__5DCAEF64" FromRole="propiedad" ToRole="consignacion" />
+          <NavigationProperty Name="estado_propiedad" Relationship="Self.FK__propiedad__id_es__59FA5E80" FromRole="propiedad" ToRole="estado_propiedad" />
+          <NavigationProperty Name="imagen_propiedad" Relationship="Self.FK__imagen_pr__id_pr__7E37BEF6" FromRole="propiedad" ToRole="imagen_propiedad" />
+          <NavigationProperty Name="propiedad_modelo" Relationship="Self.FK__propiedad__id_pr__6477ECF3" FromRole="propiedad" ToRole="propiedad_modelo" />
+          <NavigationProperty Name="tipo_propiedad" Relationship="Self.FK__propiedad__id_ti__5812160E" FromRole="propiedad" ToRole="tipo_propiedad" />
+          <NavigationProperty Name="ventas" Relationship="Self.FK__venta__id_propie__68487DD7" FromRole="propiedad" ToRole="venta" />
+          <NavigationProperty Name="visitas" Relationship="Self.FK__visita__id_propi__71D1E811" FromRole="propiedad" ToRole="visita" />
+        </EntityType>
+        <EntityType Name="propiedad_modelo">
+          <Key>
+            <PropertyRef Name="id_propiedad" />
+          </Key>
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="costo_decoracion" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="fecha_decoracion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__propiedad__id_pr__6477ECF3" FromRole="propiedad_modelo" ToRole="propiedad" />
+          <NavigationProperty Name="proyecto" Relationship="Self.FK__propiedad__id_pr__656C112C" FromRole="propiedad_modelo" ToRole="proyecto" />
+        </EntityType>
+        <EntityType Name="propietario">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="consignacions" Relationship="Self.FK__consignac__id_pr__5EBF139D" FromRole="propietario" ToRole="consignacion" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_comercial" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nit" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_proveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orden_compra" Relationship="Self.FK__orden_com__id_pr__778AC167" FromRole="proveedor" ToRole="orden_compra" />
+          <NavigationProperty Name="tipo_proveedor" Relationship="Self.FK__proveedor__id_ti__5535A963" FromRole="proveedor" ToRole="tipo_proveedor" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_lanzamiento" Type="DateTime" Precision="0" />
+          <Property Name="fecha_entrega_estimada" Type="DateTime" Precision="0" />
+          <Property Name="desarrollador" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ciudad" Relationship="Self.FK__proyecto__id_ciu__619B8048" FromRole="proyecto" ToRole="ciudad" />
+          <NavigationProperty Name="propiedad_modelo" Relationship="Self.FK__propiedad__id_pr__656C112C" FromRole="proyecto" ToRole="propiedad_modelo" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="id_sede" />
+          </Key>
+          <Property Name="id_sede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ciudad" Relationship="Self.FK__sede__id_ciudad__45F365D3" FromRole="sede" ToRole="ciudad" />
+          <NavigationProperty Name="empleadoes" Relationship="Self.FK__empleado__sede_i__5165187F" FromRole="sede" ToRole="empleado" />
+        </EntityType>
+        <EntityType Name="tipo_propiedad">
+          <Key>
+            <PropertyRef Name="id_tipo_propiedad" />
+          </Key>
+          <Property Name="id_tipo_propiedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="propiedads" Relationship="Self.FK__propiedad__id_ti__5812160E" FromRole="tipo_propiedad" ToRole="propiedad" />
+        </EntityType>
+        <EntityType Name="tipo_proveedor">
+          <Key>
+            <PropertyRef Name="id_tipo_proveedor" />
+          </Key>
+          <Property Name="id_tipo_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="proveedors" Relationship="Self.FK__proveedor__id_ti__5535A963" FromRole="tipo_proveedor" ToRole="proveedor" />
+        </EntityType>
+        <EntityType Name="tipo_visita">
+          <Key>
+            <PropertyRef Name="id_tipo_visita" />
+          </Key>
+          <Property Name="id_tipo_visita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="visitas" Relationship="Self.FK__visita__id_tipo___74AE54BC" FromRole="tipo_visita" ToRole="visita" />
+        </EntityType>
+        <EntityType Name="venta">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="fecha_venta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="precio_final" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="comision" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__venta__id_client__693CA210" FromRole="venta" ToRole="cliente" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__venta__id_emplea__6A30C649" FromRole="venta" ToRole="empleado" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__venta__id_propie__68487DD7" FromRole="venta" ToRole="propiedad" />
+        </EntityType>
+        <EntityType Name="visita">
+          <Key>
+            <PropertyRef Name="id_visita" />
+          </Key>
+          <Property Name="id_visita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_propiedad" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo_visita" Type="Int32" Nullable="false" />
+          <Property Name="fecha_hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__visita__id_clien__72C60C4A" FromRole="visita" ToRole="cliente" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__visita__id_emple__73BA3083" FromRole="visita" ToRole="empleado" />
+          <NavigationProperty Name="propiedad" Relationship="Self.FK__visita__id_propi__71D1E811" FromRole="visita" ToRole="propiedad" />
+          <NavigationProperty Name="tipo_visita" Relationship="Self.FK__visita__id_tipo___74AE54BC" FromRole="visita" ToRole="tipo_visita" />
+        </EntityType>
+        <Association Name="FK__arriendo__id_emp__6EF57B66">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__arriendo__id_inq__6E01572D">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_inquilino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__arriendo__id_pro__6D0D32F4">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="arriendo" Type="Self.arriendo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="arriendo">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_ci__59063A47">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proyecto__id_ciu__619B8048">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sede__id_ciudad__45F365D3">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="sede" Type="Self.sede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="sede">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_client__693CA210">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_clien__72C60C4A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__consignac__id_pr__5DCAEF64">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="consignacion" Type="Self.consignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="consignacion">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__consignac__id_pr__5EBF139D">
+          <End Role="propietario" Type="Self.propietario" Multiplicity="1" />
+          <End Role="consignacion" Type="Self.consignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propietario">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="consignacion">
+              <PropertyRef Name="id_propietario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_o__id_or__7B5B524B">
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalle_orden" Type="Self.detalle_orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orden_compra">
+              <PropertyRef Name="id_orden" />
+            </Principal>
+            <Dependent Role="detalle_orden">
+              <PropertyRef Name="id_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__empleado__sede_i__5165187F">
+          <End Role="sede" Type="Self.sede" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sede">
+              <PropertyRef Name="id_sede" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="sede_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden_com__id_em__787EE5A0">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="orden_compra">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_emplea__6A30C649">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_emple__73BA3083">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_es__59FA5E80">
+          <End Role="estado_propiedad" Type="Self.estado_propiedad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_propiedad">
+              <PropertyRef Name="id_estado_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_estado_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__imagen_pr__id_pr__7E37BEF6">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="imagen_propiedad" Type="Self.imagen_propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="imagen_propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden_com__id_pr__778AC167">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="orden_compra" Type="Self.orden_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="orden_compra">
+              <PropertyRef Name="id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_pr__6477ECF3">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="propiedad_modelo" Type="Self.propiedad_modelo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad_modelo">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_ti__5812160E">
+          <End Role="tipo_propiedad" Type="Self.tipo_propiedad" Multiplicity="1" />
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_propiedad">
+              <PropertyRef Name="id_tipo_propiedad" />
+            </Principal>
+            <Dependent Role="propiedad">
+              <PropertyRef Name="id_tipo_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__venta__id_propie__68487DD7">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_propi__71D1E811">
+          <End Role="propiedad" Type="Self.propiedad" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedad">
+              <PropertyRef Name="id_propiedad" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propiedad__id_pr__656C112C">
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="1" />
+          <End Role="propiedad_modelo" Type="Self.propiedad_modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="propiedad_modelo">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proveedor__id_ti__5535A963">
+          <End Role="tipo_proveedor" Type="Self.tipo_proveedor" Multiplicity="1" />
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_proveedor">
+              <PropertyRef Name="id_tipo_proveedor" />
+            </Principal>
+            <Dependent Role="proveedor">
+              <PropertyRef Name="id_tipo_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visita__id_tipo___74AE54BC">
+          <End Role="tipo_visita" Type="Self.tipo_visita" Multiplicity="1" />
+          <End Role="visita" Type="Self.visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_visita">
+              <PropertyRef Name="id_tipo_visita" />
+            </Principal>
+            <Dependent Role="visita">
+              <PropertyRef Name="id_tipo_visita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INMOBILIARIAAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="arriendoes" EntityType="Self.arriendo" />
+          <EntitySet Name="ciudads" EntityType="Self.ciudad" />
+          <EntitySet Name="clientes" EntityType="Self.cliente" />
+          <EntitySet Name="consignacions" EntityType="Self.consignacion" />
+          <EntitySet Name="detalle_orden" EntityType="Self.detalle_orden" />
+          <EntitySet Name="empleadoes" EntityType="Self.empleado" />
+          <EntitySet Name="estado_propiedad" EntityType="Self.estado_propiedad" />
+          <EntitySet Name="imagen_propiedad" EntityType="Self.imagen_propiedad" />
+          <EntitySet Name="orden_compra" EntityType="Self.orden_compra" />
+          <EntitySet Name="propiedads" EntityType="Self.propiedad" />
+          <EntitySet Name="propiedad_modelo" EntityType="Self.propiedad_modelo" />
+          <EntitySet Name="propietarios" EntityType="Self.propietario" />
+          <EntitySet Name="proveedors" EntityType="Self.proveedor" />
+          <EntitySet Name="proyectoes" EntityType="Self.proyecto" />
+          <EntitySet Name="sedes" EntityType="Self.sede" />
+          <EntitySet Name="tipo_propiedad" EntityType="Self.tipo_propiedad" />
+          <EntitySet Name="tipo_proveedor" EntityType="Self.tipo_proveedor" />
+          <EntitySet Name="tipo_visita" EntityType="Self.tipo_visita" />
+          <EntitySet Name="ventas" EntityType="Self.venta" />
+          <EntitySet Name="visitas" EntityType="Self.visita" />
+          <AssociationSet Name="FK__arriendo__id_emp__6EF57B66" Association="Self.FK__arriendo__id_emp__6EF57B66">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="arriendo" EntitySet="arriendoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__arriendo__id_inq__6E01572D" Association="Self.FK__arriendo__id_inq__6E01572D">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="arriendo" EntitySet="arriendoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__arriendo__id_pro__6D0D32F4" Association="Self.FK__arriendo__id_pro__6D0D32F4">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="arriendo" EntitySet="arriendoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_ci__59063A47" Association="Self.FK__propiedad__id_ci__59063A47">
+            <End Role="ciudad" EntitySet="ciudads" />
+            <End Role="propiedad" EntitySet="propiedads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proyecto__id_ciu__619B8048" Association="Self.FK__proyecto__id_ciu__619B8048">
+            <End Role="ciudad" EntitySet="ciudads" />
+            <End Role="proyecto" EntitySet="proyectoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sede__id_ciudad__45F365D3" Association="Self.FK__sede__id_ciudad__45F365D3">
+            <End Role="ciudad" EntitySet="ciudads" />
+            <End Role="sede" EntitySet="sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_client__693CA210" Association="Self.FK__venta__id_client__693CA210">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="venta" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_clien__72C60C4A" Association="Self.FK__visita__id_clien__72C60C4A">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="visita" EntitySet="visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__consignac__id_pr__5DCAEF64" Association="Self.FK__consignac__id_pr__5DCAEF64">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="consignacion" EntitySet="consignacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__consignac__id_pr__5EBF139D" Association="Self.FK__consignac__id_pr__5EBF139D">
+            <End Role="propietario" EntitySet="propietarios" />
+            <End Role="consignacion" EntitySet="consignacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_o__id_or__7B5B524B" Association="Self.FK__detalle_o__id_or__7B5B524B">
+            <End Role="orden_compra" EntitySet="orden_compra" />
+            <End Role="detalle_orden" EntitySet="detalle_orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__empleado__sede_i__5165187F" Association="Self.FK__empleado__sede_i__5165187F">
+            <End Role="sede" EntitySet="sedes" />
+            <End Role="empleado" EntitySet="empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden_com__id_em__787EE5A0" Association="Self.FK__orden_com__id_em__787EE5A0">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="orden_compra" EntitySet="orden_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_emplea__6A30C649" Association="Self.FK__venta__id_emplea__6A30C649">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="venta" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_emple__73BA3083" Association="Self.FK__visita__id_emple__73BA3083">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="visita" EntitySet="visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_es__59FA5E80" Association="Self.FK__propiedad__id_es__59FA5E80">
+            <End Role="estado_propiedad" EntitySet="estado_propiedad" />
+            <End Role="propiedad" EntitySet="propiedads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__imagen_pr__id_pr__7E37BEF6" Association="Self.FK__imagen_pr__id_pr__7E37BEF6">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="imagen_propiedad" EntitySet="imagen_propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden_com__id_pr__778AC167" Association="Self.FK__orden_com__id_pr__778AC167">
+            <End Role="proveedor" EntitySet="proveedors" />
+            <End Role="orden_compra" EntitySet="orden_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_pr__6477ECF3" Association="Self.FK__propiedad__id_pr__6477ECF3">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="propiedad_modelo" EntitySet="propiedad_modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_ti__5812160E" Association="Self.FK__propiedad__id_ti__5812160E">
+            <End Role="tipo_propiedad" EntitySet="tipo_propiedad" />
+            <End Role="propiedad" EntitySet="propiedads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__venta__id_propie__68487DD7" Association="Self.FK__venta__id_propie__68487DD7">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="venta" EntitySet="ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_propi__71D1E811" Association="Self.FK__visita__id_propi__71D1E811">
+            <End Role="propiedad" EntitySet="propiedads" />
+            <End Role="visita" EntitySet="visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propiedad__id_pr__656C112C" Association="Self.FK__propiedad__id_pr__656C112C">
+            <End Role="proyecto" EntitySet="proyectoes" />
+            <End Role="propiedad_modelo" EntitySet="propiedad_modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proveedor__id_ti__5535A963" Association="Self.FK__proveedor__id_ti__5535A963">
+            <End Role="tipo_proveedor" EntitySet="tipo_proveedor" />
+            <End Role="proveedor" EntitySet="proveedors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visita__id_tipo___74AE54BC" Association="Self.FK__visita__id_tipo___74AE54BC">
+            <End Role="tipo_visita" EntitySet="tipo_visita" />
+            <End Role="visita" EntitySet="visitas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INMOBILIARIAModelStoreContainer" CdmEntityContainer="INMOBILIARIAAEntities">
+          <EntitySetMapping Name="arriendoes">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.arriendo">
+              <MappingFragment StoreEntitySet="arriendo">
+                <ScalarProperty Name="id_arriendo" ColumnName="id_arriendo" />
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="id_inquilino" ColumnName="id_inquilino" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="canon_mensual" ColumnName="canon_mensual" />
+                <ScalarProperty Name="deposito" ColumnName="deposito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudads">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.ciudad">
+              <MappingFragment StoreEntitySet="ciudad">
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="consignacions">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.consignacion">
+              <MappingFragment StoreEntitySet="consignacion">
+                <ScalarProperty Name="id_consignacion" ColumnName="id_consignacion" />
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="id_propietario" ColumnName="id_propietario" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="porcentaje_comision" ColumnName="porcentaje_comision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_orden">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.detalle_orden">
+              <MappingFragment StoreEntitySet="detalle_orden">
+                <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleadoes">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="sede_id" ColumnName="sede_id" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_propiedad">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.estado_propiedad">
+              <MappingFragment StoreEntitySet="estado_propiedad">
+                <ScalarProperty Name="id_estado_propiedad" ColumnName="id_estado_propiedad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imagen_propiedad">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.imagen_propiedad">
+              <MappingFragment StoreEntitySet="imagen_propiedad">
+                <ScalarProperty Name="id_Imagen" ColumnName="id_Imagen" />
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orden_compra">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.orden_compra">
+              <MappingFragment StoreEntitySet="orden_compra">
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="fecha_orden" ColumnName="fecha_orden" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="propiedads">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.propiedad">
+              <MappingFragment StoreEntitySet="propiedad">
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_tipo_propiedad" ColumnName="id_tipo_propiedad" />
+                <ScalarProperty Name="area_m2" ColumnName="area_m2" />
+                <ScalarProperty Name="habitaciones" ColumnName="habitaciones" />
+                <ScalarProperty Name="banos" ColumnName="banos" />
+                <ScalarProperty Name="parqueaderos" ColumnName="parqueaderos" />
+                <ScalarProperty Name="anio_construccion" ColumnName="anio_construccion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="precio_arriendo" ColumnName="precio_arriendo" />
+                <ScalarProperty Name="id_estado_propiedad" ColumnName="id_estado_propiedad" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="propiedad_modelo">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.propiedad_modelo">
+              <MappingFragment StoreEntitySet="propiedad_modelo">
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="costo_decoracion" ColumnName="costo_decoracion" />
+                <ScalarProperty Name="fecha_decoracion" ColumnName="fecha_decoracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="propietarios">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.propietario">
+              <MappingFragment StoreEntitySet="propietario">
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedors">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.proveedor">
+              <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_tipo_proveedor" ColumnName="id_tipo_proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proyectoes">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.proyecto">
+              <MappingFragment StoreEntitySet="proyecto">
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fecha_lanzamiento" ColumnName="fecha_lanzamiento" />
+                <ScalarProperty Name="fecha_entrega_estimada" ColumnName="fecha_entrega_estimada" />
+                <ScalarProperty Name="desarrollador" ColumnName="desarrollador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sedes">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.sede">
+              <MappingFragment StoreEntitySet="sede">
+                <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_propiedad">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.tipo_propiedad">
+              <MappingFragment StoreEntitySet="tipo_propiedad">
+                <ScalarProperty Name="id_tipo_propiedad" ColumnName="id_tipo_propiedad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_proveedor">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.tipo_proveedor">
+              <MappingFragment StoreEntitySet="tipo_proveedor">
+                <ScalarProperty Name="id_tipo_proveedor" ColumnName="id_tipo_proveedor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_visita">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.tipo_visita">
+              <MappingFragment StoreEntitySet="tipo_visita">
+                <ScalarProperty Name="id_tipo_visita" ColumnName="id_tipo_visita" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ventas">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.venta">
+              <MappingFragment StoreEntitySet="venta">
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
+                <ScalarProperty Name="precio_final" ColumnName="precio_final" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visitas">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.visita">
+              <MappingFragment StoreEntitySet="visita">
+                <ScalarProperty Name="id_visita" ColumnName="id_visita" />
+                <ScalarProperty Name="id_propiedad" ColumnName="id_propiedad" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_tipo_visita" ColumnName="id_tipo_visita" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

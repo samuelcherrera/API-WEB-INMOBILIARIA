@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2d74c6a6b70445888a3b5d499bfe3f4" Name="Diagram1">
+        <EntityTypeShape EntityType="INMOBILIARIAModel.arriendo" Width="1.5" PointX="7.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.ciudad" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.cliente" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.consignacion" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.detalle_orden" Width="1.5" PointX="9.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.empleado" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.estado_propiedad" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.imagen_propiedad" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.orden_compra" Width="1.5" PointX="7.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.propiedad" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.propiedad_modelo" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.propietario" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.proveedor" Width="1.5" PointX="5.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.proyecto" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.sede" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.tipo_propiedad" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.tipo_proveedor" Width="1.5" PointX="3" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.tipo_visita" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.venta" Width="1.5" PointX="10.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INMOBILIARIAModel.visita" Width="1.5" PointX="7.5" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__arriendo__id_emp__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__arriendo__id_inq__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__arriendo__id_pro__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__propiedad__id_ci__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__proyecto__id_ciu__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__sede__id_ciudad__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__venta__id_client__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__visita__id_clien__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__consignac__id_pr__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__consignac__id_pr__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__detalle_o__id_or__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__empleado__sede_i__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__orden_com__id_em__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__venta__id_emplea__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__visita__id_emple__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__propiedad__id_es__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__imagen_pr__id_pr__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__orden_com__id_pr__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__propiedad__id_pr__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__propiedad__id_ti__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__venta__id_propie__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__visita__id_propi__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__propiedad__id_pr__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__proveedor__id_ti__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="INMOBILIARIAModel.FK__visita__id_tipo___74AE54BC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
