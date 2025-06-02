@@ -1,39 +1,69 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using API_WEB_INMOBILIARIA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [RoutePrefix("api/Clientes")]
+    [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClientesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodos")]
+        public List<cliente> ConsultarTodos()
         {
-            return new string[] { "value1", "value2" };
+            clsCliente Cliente = new clsCliente();
+            return Cliente.ConsultarTodos();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarXDocumento")]
+        public cliente ConsultarXDocumento(string identificacion)
         {
-            return "value";
+            clsCliente Cliente = new clsCliente();
+            return Cliente.Consultar(identificacion);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] cliente cliente)
         {
+            clsCliente Cliente = new clsCliente();
+            Cliente.cliente = cliente;
+            return Cliente.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] cliente cliente)
         {
+            clsCliente Cliente = new clsCliente();
+            Cliente.cliente = cliente;
+            return Cliente.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] cliente cliente)
         {
+            clsCliente Cliente = new clsCliente();
+            Cliente.cliente = cliente;
+            return Cliente.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarXDocumento")]
+        public string EliminarXDocumento(string identificacion)
+        {
+            clsCliente Cliente = new clsCliente();
+            return Cliente.EliminarXIdentificacion(identificacion);
         }
     }
 }
