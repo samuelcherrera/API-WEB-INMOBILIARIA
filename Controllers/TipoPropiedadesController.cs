@@ -7,33 +7,71 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
-    public class TipoPropiedadesController : ApiController
+    [RoutePrefix("api/TipoPropiedades")]
+[EnableCors(origins: "*", headers: "*", methods: "*")]
+
+public class TipoPropiedadesController : ApiController
+
+{
+    [HttpGet]
+    [Route("ConsultarTodos")]
+    public List<tipo_propiedad> ConsultarTodos()
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        clsTipo_Propiedad TipoPropiedad = new clsTipo_Propiedad();
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        return TipoPropiedad.ConsultarTodos();
     }
+
+
+    [HttpGet]
+    [Route("ConsultarXId")]
+    public tipo_propiedad ConsultarXDocumento(int id)
+    {
+        clsTipo_Propiedad TipoPropiedad = new clsTipo_Propiedad();
+
+        return TipoPropiedad.Consultar(id);
+    }
+
+
+    [HttpPost]
+    [Route("Insertar")]
+    public string Insertar([FromBody] tipo_propiedad Tipo_Propiedad)
+    {
+        clsTipo_Propiedad _TipoPropiedad = new clsTipo_Propiedad();
+        _TipoPropiedad.Tipo_Propiedad = Tipo_Propiedad;
+
+        return _TipoPropiedad.Insertar();
+    }
+
+
+    [HttpPut]
+    [Route("Actualizar")]
+    public string Actualizar([FromBody] tipo_propiedad Tipo_Propiedad)
+    {
+        clsTipo_Propiedad _TipoPropiedad = new clsTipo_Propiedad();
+        _TipoPropiedad.Tipo_Propiedad = Tipo_Propiedad;
+
+        return _TipoPropiedad.Actualizar();
+    }
+
+
+    [HttpDelete]
+    [Route("Eliminar")]
+    public string Eliminar([FromBody] tipo_propiedad Tipo_Propiedad)
+    {
+        clsTipo_Propiedad _TipoPropiedad = new clsTipo_Propiedad();
+        _TipoPropiedad.Tipo_Propiedad = Tipo_Propiedad;
+
+        return _TipoPropiedad.Eliminar();
+    }
+
+
+    [HttpDelete]
+    [Route("EliminarXId")]
+    public string EliminarXDocumento(int id)
+    {
+        clsTipo_Propiedad _TipoPropiedad = new clsTipo_Propiedad();
+        return _TipoPropiedad.EliminarXid(id);
+    }
+}
 }
