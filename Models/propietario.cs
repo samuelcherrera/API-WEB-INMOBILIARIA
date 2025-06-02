@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -27,7 +28,9 @@ namespace API_WEB_INMOBILIARIA.Models
         public string telefono { get; set; }
         public string email { get; set; }
         public string direccion { get; set; }
-    
+
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consignacion> consignacions { get; set; }
     }

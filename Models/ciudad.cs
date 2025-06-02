@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,11 +26,19 @@ namespace API_WEB_INMOBILIARIA.Models
         public int id_ciudad { get; set; }
         public string nombre { get; set; }
         public string departamento { get; set; }
-    
+
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<propiedad> propiedads { get; set; }
+
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyecto> proyectoes { get; set; }
+
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sede> sedes { get; set; }
     }

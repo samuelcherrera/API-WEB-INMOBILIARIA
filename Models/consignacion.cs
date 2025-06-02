@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -20,8 +21,12 @@ namespace API_WEB_INMOBILIARIA.Models
         public System.DateTime fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_fin { get; set; }
         public decimal porcentaje_comision { get; set; }
-    
+
+
+        [JsonIgnore]
         public virtual propiedad propiedad { get; set; }
+
+        [JsonIgnore]
         public virtual propietario propietario { get; set; }
     }
 }

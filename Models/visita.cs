@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -21,10 +22,18 @@ namespace API_WEB_INMOBILIARIA.Models
         public int id_tipo_visita { get; set; }
         public System.DateTime fecha_hora { get; set; }
         public string comentarios { get; set; }
-    
+
+
+        [JsonIgnore]
         public virtual cliente cliente { get; set; }
+
+        [JsonIgnore]
         public virtual empleado empleado { get; set; }
+
+        [JsonIgnore]
         public virtual propiedad propiedad { get; set; }
+
+        [JsonIgnore]
         public virtual tipo_visita tipo_visita { get; set; }
     }
 }

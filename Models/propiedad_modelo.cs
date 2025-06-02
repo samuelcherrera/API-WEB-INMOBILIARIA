@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -18,8 +19,12 @@ namespace API_WEB_INMOBILIARIA.Models
         public int id_proyecto { get; set; }
         public Nullable<decimal> costo_decoracion { get; set; }
         public Nullable<System.DateTime> fecha_decoracion { get; set; }
-    
+
+
+        [JsonIgnore]
         public virtual propiedad propiedad { get; set; }
+
+        [JsonIgnore]
         public virtual proyecto proyecto { get; set; }
     }
 }

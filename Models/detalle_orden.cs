@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,7 +20,8 @@ namespace API_WEB_INMOBILIARIA.Models
         public string descripcion { get; set; }
         public decimal cantidad { get; set; }
         public decimal precio_unitario { get; set; }
-    
+
+        [JsonIgnore]
         public virtual orden_compra orden_compra { get; set; }
     }
 }

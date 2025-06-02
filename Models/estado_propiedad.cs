@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -22,7 +23,9 @@ namespace API_WEB_INMOBILIARIA.Models
     
         public int id_estado_propiedad { get; set; }
         public string descripcion { get; set; }
-    
+
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<propiedad> propiedads { get; set; }
     }

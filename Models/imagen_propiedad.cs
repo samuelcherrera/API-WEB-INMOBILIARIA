@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -17,7 +18,9 @@ namespace API_WEB_INMOBILIARIA.Models
         public int id_Imagen { get; set; }
         public int id_propiedad { get; set; }
         public string Nombre { get; set; }
-    
+
+
+        [JsonIgnore]
         public virtual propiedad propiedad { get; set; }
     }
 }

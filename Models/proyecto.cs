@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -27,8 +28,12 @@ namespace API_WEB_INMOBILIARIA.Models
         public Nullable<System.DateTime> fecha_lanzamiento { get; set; }
         public Nullable<System.DateTime> fecha_entrega_estimada { get; set; }
         public string desarrollador { get; set; }
-    
+
+
+        [JsonIgnore]
         public virtual ciudad ciudad { get; set; }
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<propiedad_modelo> propiedad_modelo { get; set; }
     }

@@ -1,39 +1,52 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [RoutePrefix("UploadFiles")]
+    [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class UploadFilesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public async Task<HttpResponseMessage> GrabarArchivo(HttpRequestMessage Request, string Datos, string Proceso)
         {
-            return new string[] { "value1", "value2" };
+            clsUpload UploadFiles = new clsUpload();
+            UploadFiles.request = Request;
+            UploadFiles.Datos = Datos;
+            UploadFiles.Proceso = Proceso;
+            return await UploadFiles.GrabaArchivo(false);
+        }
+        [HttpGet]
+        public HttpResponseMessage Get(string NombreImagen)
+        {
+            clsUpload upload = new clsUpload();
+            return upload.ConsultarArchivo(NombreImagen);
+        }
+        [HttpPut]
+        public async Task<HttpResponseMessage> ActualizarArchivo(HttpRequestMessage Request, string Datos, string Proceso)
+        {
+            clsUpload UploadFiles = new clsUpload();
+            UploadFiles.request = Request;
+            UploadFiles.Datos = Datos;
+            UploadFiles.Proceso = Proceso;
+            return await UploadFiles.GrabaArchivo(true);
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public HttpResponseMessage EliminarArchivo(string NombreImagen)
         {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            clsUpload UploadFiles = new clsUpload();
+            return UploadFiles.EliminarArchivo(NombreImagen);
         }
     }
 }

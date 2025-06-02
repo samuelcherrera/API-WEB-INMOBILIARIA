@@ -9,6 +9,7 @@
 
 namespace API_WEB_INMOBILIARIA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,10 +26,15 @@ namespace API_WEB_INMOBILIARIA.Models
         public int id_empleado { get; set; }
         public System.DateTime fecha_orden { get; set; }
         public decimal total { get; set; }
-    
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_orden> detalle_orden { get; set; }
+
+        [JsonIgnore]
         public virtual empleado empleado { get; set; }
+
+        [JsonIgnore]
         public virtual proveedor proveedor { get; set; }
     }
 }
