@@ -7,33 +7,59 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
-    public class PropiedadesModelosController : ApiController
+   [RoutePrefix("api/PropiedadModelo")]
+[EnableCors(origins: "*", headers: "*", methods: "*")]
+public class PropiedadModeloController : ApiController
+{
+    [HttpGet]
+    [Route("ConsultarTodas")]
+    public List<propiedad_modelo> ConsultarTodas()
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        return modelo.ConsultarTodas();
     }
+
+    [HttpGet]
+    [Route("ConsultarPorId")]
+    public propiedad_modelo ConsultarPorId(int id)
+    {
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        return modelo.ConsultarPorId(id);
+    }
+
+    [HttpPost]
+    [Route("Insertar")]
+    public string Insertar([FromBody] propiedad_modelo modeloJson)
+    {
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        modelo.propiedadModelo = modeloJson;
+        return modelo.Insertar();
+    }
+
+    [HttpPut]
+    [Route("Actualizar")]
+    public string Actualizar([FromBody] propiedad_modelo modeloJson)
+    {
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        modelo.propiedadModelo = modeloJson;
+        return modelo.Actualizar();
+    }
+
+    [HttpDelete]
+    [Route("Eliminar")]
+    public string Eliminar([FromBody] propiedad_modelo modeloJson)
+    {
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        modelo.propiedadModelo = modeloJson;
+        return modelo.Eliminar();
+    }
+
+    [HttpDelete]
+    [Route("EliminarPorId")]
+    public string EliminarPorId(int id)
+    {
+        clsPropiedadModelo modelo = new clsPropiedadModelo();
+        return modelo.EliminarPorId(id);
+    }
+}
 }
