@@ -7,33 +7,60 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
-    public class ProyectosController : ApiController
+[RoutePrefix("api/Proyectos")]
+[EnableCors(origins: "*", headers: "*", methods: "*")]
+
+public class ProyectosController : ApiController
+{
+    [HttpGet]
+    [Route("ConsultarTodos")]
+    public List<proyecto> ConsultarTodos()
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        clsProyecto obj = new clsProyecto();
+        return obj.ConsultarTodos();
     }
+
+    [HttpGet]
+    [Route("ConsultarPorId")]
+    public proyecto ConsultarPorId(int id)
+    {
+        clsProyecto obj = new clsProyecto();
+        return obj.ConsultarPorId(id);
+    }
+
+    [HttpPost]
+    [Route("Insertar")]
+    public string Insertar([FromBody] proyecto proy)
+    {
+        clsProyecto obj = new clsProyecto();
+        obj.Proyecto = proy;
+        return obj.Insertar();
+    }
+
+    [HttpPut]
+    [Route("Actualizar")]
+    public string Actualizar([FromBody] proyecto proy)
+    {
+        clsProyecto obj = new clsProyecto();
+        obj.Proyecto = proy;
+        return obj.Actualizar();
+    }
+
+    [HttpDelete]
+    [Route("Eliminar")]
+    public string Eliminar([FromBody] proyecto proy)
+    {
+        clsProyecto obj = new clsProyecto();
+        obj.Proyecto = proy;
+        return obj.Eliminar();
+    }
+
+    [HttpDelete]
+    [Route("EliminarPorId")]
+    public string EliminarPorId(int id)
+    {
+        clsProyecto obj = new clsProyecto();
+        return obj.EliminarPorId(id);
+    }
+}
 }
