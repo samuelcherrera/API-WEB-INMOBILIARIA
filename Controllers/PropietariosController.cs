@@ -7,33 +7,60 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [RoutePrefix("api/Propietarios")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class PropietariosController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodos")]
+        public List<propietario> ConsultarTodos()
         {
-            return new string[] { "value1", "value2" };
+            clsPropietario Propietario = new clsPropietario();
+            return Propietario.ConsultarTodos();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarXDocumento")]
+        public propietario ConsultarXDocumento(string identificacion)
         {
-            return "value";
+            clsPropietario Propietario = new clsPropietario();
+            return Propietario.Consultar(identificacion);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] propietario propietario)
         {
+            clsPropietario Propietario = new clsPropietario();
+            Propietario.propietario = propietario;
+            return Propietario.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] propietario propietario)
         {
+            clsPropietario Propietario = new clsPropietario();
+            Propietario.propietario = propietario;
+            return Propietario.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] propietario propietario)
         {
+            clsPropietario Propietario = new clsPropietario();
+            Propietario.propietario = propietario;
+            return Propietario.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarXDocumento")]
+        public string EliminarXIdentificacion(string identificacion)
+        {
+            clsPropietario Propietario = new clsPropietario();
+            return Propietario.EliminarPorIdentificacion(identificacion);
         }
     }
 }
