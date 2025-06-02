@@ -7,33 +7,60 @@ using System.Web.Http;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
-    public class TipoProovedoresController : ApiController
+    [RoutePrefix("api/TipoProveedor")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+    public class TipoProveedorController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("ConsultarTodos")]
+        public List<tipo_proveedor> ConsultarTodos()
         {
-            return new string[] { "value1", "value2" };
+            clsTipoProovedor tp = new clsTipoProovedor();
+            return tp.ConsultarTodos();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("ConsultarPorId")]
+        public tipo_proveedor ConsultarPorId(int id)
         {
-            return "value";
+            clsTipoProovedor tp = new clsTipoProovedor();
+            return tp.ConsultarPorId(id);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("Insertar")]
+        public string Insertar([FromBody] tipo_proveedor proveedor)
         {
+            clsTipoProovedor tp = new clsTipoProovedor();
+            tp.TipoProveedor = proveedor;
+            return tp.Insertar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Actualizar")]
+        public string Actualizar([FromBody] tipo_proveedor proveedor)
         {
+            clsTipoProovedor tp = new clsTipoProovedor();
+            tp.TipoProveedor = proveedor;
+            return tp.Actualizar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Eliminar")]
+        public string Eliminar([FromBody] tipo_proveedor proveedor)
         {
+            clsTipoProovedor tp = new clsTipoProovedor();
+            tp.TipoProveedor = proveedor;
+            return tp.Eliminar();
+        }
+
+        [HttpDelete]
+        [Route("EliminarPorId")]
+        public string EliminarPorId(int id)
+        {
+            clsTipoProovedor tp = new clsTipoProovedor();
+            return tp.EliminarPorId(id);
         }
     }
 }
