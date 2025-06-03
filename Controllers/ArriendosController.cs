@@ -10,6 +10,7 @@ using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Arriendos")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ArriendosController : ApiController

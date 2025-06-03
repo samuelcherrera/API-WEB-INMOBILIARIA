@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 namespace API_WEB_INMOBILIARIA.Controllers
 {
     [RoutePrefix("api/Ventas")]
-    //[Authorize]
+    [Authorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class VentasController : ApiController

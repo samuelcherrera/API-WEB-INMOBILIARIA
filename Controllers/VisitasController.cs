@@ -13,8 +13,9 @@ namespace API_WEB_INMOBILIARIA.Controllers
     
         [RoutePrefix("api/Visitas")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
 
-        public class VisitasController : ApiController
+    public class VisitasController : ApiController
 
         {
 

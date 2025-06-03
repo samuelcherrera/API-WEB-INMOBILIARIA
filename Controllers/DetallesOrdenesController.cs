@@ -12,6 +12,8 @@ namespace API_WEB_INMOBILIARIA.Controllers
 {
     [RoutePrefix("api/DetalleOrden")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
+
     public class DetalleOrdenController : ApiController
     {
         [HttpGet]

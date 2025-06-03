@@ -1,14 +1,19 @@
-﻿using System;
+﻿using API_WEB_INMOBILIARIA.Classes;
+using API_WEB_INMOBILIARIA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
     [RoutePrefix("api/TipoProveedor")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
+
 
     public class TipoProveedorController : ApiController
     {

@@ -6,11 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API_WEB_INMOBILIARIA.Controllers
 {
     [RoutePrefix("api/Propiedades")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
+
 
     public class PropiedadesController : ApiController
     {
