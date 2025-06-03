@@ -1,8 +1,11 @@
 ﻿using API_WEB_INMOBILIARIA.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
+using static API_WEB_INMOBILIARIA.Models.libLogin;
+
 
 namespace API_WEB_INMOBILIARIA.Classes
 {
@@ -28,6 +31,7 @@ namespace API_WEB_INMOBILIARIA.Classes
                     loginRespuesta.Mensaje = "Usuario no existe";
                     return false;
                 }
+
 
 
                 //SE OBTIENE LA CLAVE CIFRADA
@@ -85,17 +89,17 @@ namespace API_WEB_INMOBILIARIA.Classes
                 string token = TokenGenerator.GenerateTokenJwt(login.Usuario, empleado.id_empleado);
 
                 return new List<LoginRespuesta>
-    {
-        new LoginRespuesta
         {
-            Usuario = empleado.usuario,
-            Autenticado = true,
-            Perfil = empleado.nombres,
-            Documento = empleado.identificacion,
-            Token = token,
-            Mensaje = ""
-        }
-    }.AsQueryable();
+            new LoginRespuesta
+            {
+                Usuario = empleado.usuario,
+                Autenticado = true,
+                Perfil = empleado.nombres,
+                Documento = empleado.identificacion,
+                Token = token,
+                Mensaje = ""
+            }
+        }.AsQueryable();
             }
             else
             {

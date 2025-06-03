@@ -343,6 +343,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>INMOBILIARIAA.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\libLogin.cs" />
     <Compile Include="Models\orden_compra.cs">
       <DependentUpon>INMOBILIARIAA.tt</DependentUpon>
     </Compile>
